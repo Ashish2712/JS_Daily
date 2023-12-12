@@ -62,15 +62,29 @@
 
 // anagram function -> two strings should be equal -> logic -> sort the strings and then check if they are equal
 
-
-function isAnagram(str1, str2){
-    if(str1.split('').sort().join('') == str2.split('').sort().join('')){
-        return true;
-    } else{
-        return false;
+function sortTheString(str){
+    var sortedString = "";
+    sortedString = str.toLowerCase().split('').sort().join('');
+    return sortedString;
+  }
+  
+  function isAnagram(str1, str2) {
+    if(str1.length == str2.length){
+    if(sortTheString(str1) == sortTheString(str2)){
+      return true;
+  } else{
+      return false;
     }
-}
-
-
-var ans = isAnagram("rasp", "psar");
-console.log(ans);
+  }
+    else{
+      return false;
+    }
+  }
+  
+  
+  
+  var ans = isAnagram('Debit Card', 'Bad Credit');
+  console.log(ans);
+  
+  module.exports = isAnagram;
+  
