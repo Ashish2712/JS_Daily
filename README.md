@@ -1,2 +1,2 @@
 # JS_Daily
-This repo contains daily java script learning
+This repo contains Algo questions in JS
