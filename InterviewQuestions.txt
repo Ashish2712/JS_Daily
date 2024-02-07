@@ -1,0 +1,2 @@
+What is JavaScript?
+JavaScript is a high-level,single threaded, interpreted programming language that is commonly used to add interactivity to web pages.
