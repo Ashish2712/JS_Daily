@@ -16,3 +16,15 @@ A closure is a function that has access to its own scope, the outer enclosing fu
 
 What is the event loop in JavaScript?
 The event loop is a single-threaded mechanism that handles asynchronous callbacks in JavaScript. It continuously checks the call stack and the task queue, moving tasks from the queue to the stack when the stack is empty.
+
+What are the differences between == and === in JavaScript?
+== checks for equality after performing type coercion, while === checks for equality without type coercion (strict equality).
+
+Explain the concept of hoisting in JavaScript.
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their containing scope during the compile phase, regardless of where they are declared.
+
+What are the different ways to create objects in JavaScript?
+Object literals, constructor functions, and the class syntax introduced in ECMAScript 6 are common ways to create objects in JavaScript.
+
+What is the difference between let, const, and var in JavaScript?
+var has function scope, while let and const have block scope. Additionally, var allows redeclaration within the same scope, while let and const do not.
