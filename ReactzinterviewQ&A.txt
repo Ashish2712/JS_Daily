@@ -1,1 +1,24 @@
+Q-1 What is reactzjs?
+Ans: React.js, commonly referred to as React, is an open-source JavaScript library used for building user interfaces (UIs) or front-end components for web applications. It was developed by Facebook and later open-sourced. React is maintained by Facebook along with a community of individual developers and companies.
+React is popular for several reasons:
+Component-Based: React follows a component-based architecture where UIs are composed of independent and reusable components. These components encapsulate the structure, behavior, and styling of a particular part of the user interface.
+Virtual DOM: React uses a virtual DOM (Document Object Model) for efficient updating of the UI. Instead of updating the actual DOM directly, React creates a virtual representation of it in memory and updates only the parts of the actual DOM that have changed. This approach results in better performance compared to directly manipulating the DOM.
+JSX: React uses JSX (JavaScript XML) syntax, which allows developers to write HTML-like code within JavaScript. JSX makes it easier to create and manipulate React elements, and it's transpiled to regular JavaScript before being rendered in the browser.
+Unidirectional Data Flow: React follows a unidirectional data flow, where data flows in one direction from parent components to child components. This helps in managing the state of the application and makes it easier to understand how data changes over time.
+Declarative: React promotes a declarative programming style, where developers describe how the UI should look based on the application state, rather than imperatively manipulating the DOM to achieve a desired state.
+Community and Ecosystem: React has a large and active community of developers and a vast ecosystem of libraries and tools (such as React Router for routing, Redux for state management, and React Native for mobile development) that enhance its capabilities and make development more efficient.
+React is commonly used in combination with other libraries and frameworks, such as Redux for state management, React Router for routing in single-page applications, and Axios or Fetch for making HTTP requests. Additionally, React is often used with build tools like Webpack and Babel to transpile and bundle code for deployment.
+
+Q-2 What is difference between virtual dom and shallow dom , dom in React js
+Ans: 
+DOM (Document Object Model)
+The DOM is a programming interface provided by web browsers to render web pages. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as a tree of objects; when you change the DOM, the page updates to reflect those changes.
+Manipulating the DOM directly (especially on large web applications) can be slow and inefficient because changes to the DOM tree often require re-rendering of the page, or parts of it, to reflect those changes.
+2. Virtual DOM
+The Virtual DOM is an abstraction of the actual DOM, a lightweight copy of the DOM tree. React uses this concept for efficient updating of the web page. When a component's state changes, React first changes the Virtual DOM, then compares the updated Virtual DOM with a pre-update version, and calculates the most efficient way to make these changes on the actual DOM.
+This process, known as "diffing," allows React to minimize direct manipulations of the DOM, which can be costly performance-wise. By batching changes and updating only what's necessary, React enhances the performance and responsiveness of web applications.
+3. Shallow DOM
+Shallow DOM typically refers to shallow rendering, a concept used in testing React components. Shallow rendering is a feature provided by testing libraries (such as Enzyme or React Testing Library) that allows components to be rendered without rendering their children. This is useful for unit testing components in isolation without worrying about the behavior of child components.
+Shallow rendering tests the component as a unit, and ensures that tests are not indirectly asserting the behavior of child components. This approach makes tests more predictable and easier to understand.
+
 
