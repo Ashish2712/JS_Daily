@@ -1,3 +1,4 @@
+/**
 Q-1 What is reactzjs?
 Ans: React.js, commonly referred to as React, is an open-source JavaScript library used for building user interfaces (UIs) or front-end components for web applications. It was developed by Facebook and later open-sourced. React is maintained by Facebook along with a community of individual developers and companies.
 React is popular for several reasons:
@@ -8,7 +9,9 @@ Unidirectional Data Flow: React follows a unidirectional data flow, where data f
 Declarative: React promotes a declarative programming style, where developers describe how the UI should look based on the application state, rather than imperatively manipulating the DOM to achieve a desired state.
 Community and Ecosystem: React has a large and active community of developers and a vast ecosystem of libraries and tools (such as React Router for routing, Redux for state management, and React Native for mobile development) that enhance its capabilities and make development more efficient.
 React is commonly used in combination with other libraries and frameworks, such as Redux for state management, React Router for routing in single-page applications, and Axios or Fetch for making HTTP requests. Additionally, React is often used with build tools like Webpack and Babel to transpile and bundle code for deployment.
+**/
 
+/**
 Q-2 What is difference between virtual dom and shallow dom , dom in React js
 Ans: 
 DOM (Document Object Model)
@@ -20,16 +23,17 @@ This process, known as "diffing," allows React to minimize direct manipulations 
 3. Shallow DOM
 Shallow DOM typically refers to shallow rendering, a concept used in testing React components. Shallow rendering is a feature provided by testing libraries (such as Enzyme or React Testing Library) that allows components to be rendered without rendering their children. This is useful for unit testing components in isolation without worrying about the behavior of child components.
 Shallow rendering tests the component as a unit, and ensures that tests are not indirectly asserting the behavior of child components. This approach makes tests more predictable and easier to understand.
+**/
 
+/**
 Q-3 What is controlled and uncontrolled component in React js
 Ans: 
 In React, the terms "controlled" and "uncontrolled" components refer to the approach used to manage the state of form elements like <input>, <textarea>, and <select>. The distinction between controlled and uncontrolled components is an important part of React's philosophy regarding form handling.
 
 Controlled Components
 A controlled component is one where React controls the state and updates of the form element. In a controlled component, the form data is handled by the React component's state. You use the value property to set the value of the form element, and an onChange event handler to update the state based on user input.
+**/
 
-jsx
-Copy code
 class ControlledComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -60,13 +64,13 @@ class ControlledComponent extends React.Component {
     );
   }
 }
-In this example, the <input> element is a controlled component because its value is controlled by React.
 
-Uncontrolled Components
-An uncontrolled component works more like traditional HTML form elements. The state of the form element is handled by the DOM itself, not by the React component. You can access the value of an uncontrolled component using a ref to directly interact with the DOM element, rather than saving its state in the component.
+//In this example, the <input> element is a controlled component because its value is controlled by React.
 
-jsx
-Copy code
+// Uncontrolled Components
+// An uncontrolled component works more like traditional HTML form elements. The state of the form element is handled by the DOM itself, not by the React component. You can access the value of an uncontrolled component using a ref to directly interact with the DOM element, rather than saving its state in the component.
+
+
 class UncontrolledComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -91,12 +95,14 @@ class UncontrolledComponent extends React.Component {
     );
   }
 }
-In this example, the <input> element is an uncontrolled component because its value is not controlled by React.
+//In this example, the <input> element is an uncontrolled component because its value is not controlled by React.
 
+/**
 Key Differences
 State Management: Controlled components have their state managed by React (using component state), while uncontrolled components manage their own state in the DOM.
 Data Handling: In controlled components, you need to handle form data via state and provide an onChange handler to update this state. For uncontrolled components, you typically access their data through refs when you need it (e.g., on form submission).
 Use Cases: Controlled components are beneficial when you need to implement complex interactions or instant validation of user input. Uncontrolled components can be easier to integrate with non-React code and for simpler forms where direct access to the DOM is more straightforward.
 React generally recommends using controlled components to implement forms, as it allows for more direct control over the form's state and behavior, leading to more predictable and organized code. However, uncontrolled components can be useful in certain situations where you want to avoid the overhead of React's state management for every form field.
+**/
 
 
