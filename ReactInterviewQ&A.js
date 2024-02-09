@@ -100,9 +100,20 @@ class UncontrolledComponent extends React.Component {
 /**
 Key Differences
 State Management: Controlled components have their state managed by React (using component state), while uncontrolled components manage their own state in the DOM.
-Data Handling: In controlled components, you need to handle form data via state and provide an onChange handler to update this state. For uncontrolled components, you typically access their data through refs when you need it (e.g., on form submission).
-Use Cases: Controlled components are beneficial when you need to implement complex interactions or instant validation of user input. Uncontrolled components can be easier to integrate with non-React code and for simpler forms where direct access to the DOM is more straightforward.
-React generally recommends using controlled components to implement forms, as it allows for more direct control over the form's state and behavior, leading to more predictable and organized code. However, uncontrolled components can be useful in certain situations where you want to avoid the overhead of React's state management for every form field.
+Data Handling: In controlled components, you need to handle form data via state and provide an onChange handler to update this state. For uncontrolled components, 
+you typically access their data through refs when you need it (e.g., on form submission).
+Use Cases: Controlled components are beneficial when you need to implement complex interactions or instant validation of user input. 
+Uncontrolled components can be easier to integrate with non-React code and for simpler forms where direct access to the DOM is more straightforward.
+React generally recommends using controlled components to implement forms, as it allows for more direct control over the form's state and behavior, 
+leading to more predictable and organized code. However, uncontrolled components can be useful in certain situations where you want to avoid the 
+overhead of React's state management for every form field.
 **/
 
+/**Q:4 What is hooks in React js?
+Ans: Hooks are a feature introduced in React 16.8 that allow you to use state and other React features without writing a class. 
+Hooks let you "hook into" React state and lifecycle features from function components. The most commonly used hooks are useState for 
+adding state to functional components, useEffect for performing side effects (such as data fetching, subscriptions, or manually changing the DOM), 
+  and useContext for accessing React context without a consumer. Hooks offer a more direct API to React concepts you already know, make your components 
+  more reusable, and greatly simplify your code. They are now the standard for writing React components.
+**/
 
