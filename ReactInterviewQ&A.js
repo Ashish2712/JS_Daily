@@ -158,3 +158,64 @@ Redux introduces several key concepts:
 Although Redux can significantly help in managing state, especially in large applications, it also introduces complexity and boilerplate code. React's Context API and the newer React Hooks API (`useState`, `useReducer`, `useContext`) provide simpler alternatives for state management in smaller to medium-sized applications, making it essential to evaluate the necessity of Redux in your project based on its complexity and scale.
 **/
 
+/**
+Q-7 What is reducer , action, store in Redux
+Ans: Redux is a predictable state container for JavaScript apps, often used with React but compatible with other frameworks or vanilla JavaScript. It helps manage the state of an application in a predictable way by following a strict unidirectional data flow. Understanding Redux involves grasping three core concepts: actions, reducers, and the store.
+
+### Actions
+
+Actions are plain JavaScript objects that represent an intention to change the state of the application. Every action has a `type` property that indicates the type of action being performed. This type property is typically a string constant. Actions can also carry data, which is necessary for updating the state. This data is often included in additional properties of the action object.
+
+Example of an action:
+
+```javascript
+{
+  type: 'ADD_TODO',
+  payload: { text: 'Learn Redux' }
+}
+```
+
+### Reducers
+
+Reducers are pure functions that take the current state of the application and an action as arguments, and return a new state. The reducer determines how the state changes in response to an action. Reducers must be pure functions—functions that return the exact same output for given inputs and have no side effects.
+
+A reducer might look like this:
+
+```javascript
+function todoReducer(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+}
+```
+
+This reducer handles `ADD_TODO` actions by returning a new array that includes all items from the previous state, plus the new todo item contained in the action's payload.
+
+### Store
+
+The store is the object that brings actions and reducers together. It holds the application's state, provides a way to dispatch actions, and allows you to register listeners via `subscribe`. The store has several responsibilities:
+
+- Holds the current application state
+- Allows access to the current state via `getState()`
+- Allows state to be updated via `dispatch(action)`
+- Registers listeners via `subscribe(listener)`
+- Handles unregistering of listeners via the function returned by `subscribe(listener)`
+
+There is typically only one store in a Redux application. When an action is dispatched, the Redux store calls the reducer, passes in the current state and the action, and expects a new state in return.
+
+Here's how you might create a store:
+
+```javascript
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+```
+
+`rootReducer` is a reducer function that returns the new state. If you have multiple reducers, you combine them using `combineReducers` from Redux, which then becomes your `rootReducer`.
+
+In summary, in a Redux application, actions are dispatched in response to user interactions or events. Reducers process these actions and return new state objects based on the action types and data. The store manages the application state, and components read from the store to get the state they need to render. This flow ensures that the state in a Redux application is predictable and easy to manage.
+**/
