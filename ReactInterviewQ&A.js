@@ -271,3 +271,76 @@ Middleware in Redux can be used for a variety of tasks, including:
 
 Middleware adds a powerful layer of customization to Redux, enabling developers to extend Redux's capabilities in a clean and scalable way.
 **/
+
+/**
+Q: Explain data flow in Redux?
+Ans: Data flow in Redux is unidirectional and follows a strict pattern that facilitates predictable state management in applications. This pattern is designed to ensure that the state within a Redux application is easy to understand and debug. Here's a step-by-step breakdown of how data flows through a Redux application:
+
+### Step 1: Triggering an Action
+Everything starts with actions. An action is a plain JavaScript object that describes what happened. To initiate a change in the state, an action must be dispatched. This can be triggered by user interactions, API calls, or other events in the application.
+
+```javascript
+// Example of an action
+{
+  type: 'ADD_TODO',
+  text: 'Learn Redux'
+}
+```
+
+### Step 2: Dispatch Action
+The action is dispatched to the Redux store using the `store.dispatch()` method.
+
+```javascript
+store.dispatch({
+  type: 'ADD_TODO',
+  text: 'Learn Redux'
+});
+```
+
+### Step 3: Reducers Process the Action
+Reducers are pure functions that take the current state of the application and an action as arguments, and return a new state. The reducer determines how the state should change in response to the action. The key point is that reducers are pure and do not modify the state directly; they return a new object if the state changes.
+
+```javascript
+function todoReducer(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, {text: action.text, completed: false}];
+    default:
+      return state;
+  }
+}
+```
+
+### Step 4: Store Updates
+The Redux store saves the new state returned by the reducer. This is the only place where the state can be updated.
+
+### Step 5: UI Updates
+Components that need to be aware of the state changes subscribe to the store. Whenever the store's state changes, the subscribed components are notified. Typically, this is done by using the `connect` function from `react-redux` or hooks like `useSelector` in functional components, which re-render in response to the state changes they're subscribed to.
+
+```javascript
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+function TodoList() {
+  const todos = useSelector(state => state.todos);
+  return (
+    <ul>
+      {todos.map(todo => 
+        <li key={todo.text}>{todo.text}</li>
+      )}
+    </ul>
+  );
+}
+```
+
+### Step 6: Listener Callbacks
+Optionally, other parts of the application can also subscribe to the store changes and react accordingly, not just UI components. This can be useful for logging, local storage updates, or other side effects.
+
+### Key Concepts
+
+- **Single Source of Truth**: The state of your whole application is stored in an object tree within a single store.
+- **State is Read-Only**: The only way to change the state is to emit an action, an object describing what happened.
+- **Changes are Made with Pure Functions**: To specify how the state tree is transformed by actions, you write pure reducers.
+
+This unidirectional data flow makes Redux predictable and easy to understand. It enforces that data has a clear and linear path from actions to the store, then to the UI or other subscribers.
+**/
