@@ -479,3 +479,36 @@ function Example() {
 
 Initially, class components were essential for stateful components in React. However, with the introduction of Hooks, the React team now encourages the use of function components for new development because of their simplicity and the functional programming paradigm they encourage. This shift doesn't deprecate class components, which are still fully supported, but it highlights the direction React development is moving towards: a more functional approach with better ergonomics and simplicity.
 **/
+
+/**
+Q: How can we implement componentWillUnmount in functional component?
+Ans: In React, the `componentWillUnmount` lifecycle method is used in class components to perform cleanup tasks such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount` or other lifecycle methods. However, functional components do not have lifecycle methods like class components do. With the introduction of React Hooks, functional components can now use the `useEffect` Hook to achieve the same functionality as `componentWillUnmount`.
+
+The `useEffect` Hook lets you perform side effects in functional components. It can be used to replicate not only `componentDidMount` and `componentDidUpdate`, but also `componentWillUnmount` functionality. To implement a cleanup or `componentWillUnmount` behavior in a functional component, you return a function from within the function passed to `useEffect`. This returned function is the cleanup function that React will call when the component is about to unmount.
+
+Here's a basic example of how you can implement `componentWillUnmount` in a functional component using `useEffect`:
+
+```jsx
+import React, { useEffect } from 'react';
+
+function MyComponent() {
+  useEffect(() => {
+    // This part is equivalent to componentDidMount and componentDidUpdate:
+    console.log('Component did mount or update');
+
+    // Return a function that is called on component unmount:
+    return () => {
+      console.log('Component will unmount');
+      // Place your cleanup code here, similar to componentWillUnmount
+    };
+  }, []); // Passing an empty array as the second argument to useEffect makes it run only on mount and unmount
+
+  return <div>Hello, World!</div>;
+}
+
+export default MyComponent;
+```
+
+In this example, the empty dependency array `[]` as the second argument to `useEffect` tells React that your effect doesn’t depend on any values from props or state, so it only runs on mount and unmount. This is how you can mimic the behavior of `componentWillUnmount` in functional components. The function returned from within the `useEffect` hook acts as the cleanup function and is the perfect place to perform any necessary cleanup such as invalidating timers, canceling network requests, or removing subscriptions that were established in the effect.
+
+**/
