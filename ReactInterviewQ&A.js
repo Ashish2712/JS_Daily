@@ -512,3 +512,117 @@ export default MyComponent;
 In this example, the empty dependency array `[]` as the second argument to `useEffect` tells React that your effect doesn’t depend on any values from props or state, so it only runs on mount and unmount. This is how you can mimic the behavior of `componentWillUnmount` in functional components. The function returned from within the `useEffect` hook acts as the cleanup function and is the perfect place to perform any necessary cleanup such as invalidating timers, canceling network requests, or removing subscriptions that were established in the effect.
 
 **/
+
+/**
+Q: useEffect,UseState,useMemo.useCallback hooks in Details?
+Ans: Certainly! Let's dive deeper into each of these React hooks: `useEffect`, `useState`, `useMemo`, and `useCallback`.
+
+### 1. `useState` Hook:
+- **Purpose**: Used to add state to functional components in React.
+- **Syntax**: `const [state, setState] = useState(initialState);`
+- **Description**:
+  - `state` is the current state value.
+  - `setState` is a function to update the state.
+  - `initialState` is the initial value of the state variable.
+- **Example**:
+  ```jsx
+  import React, { useState } from 'react';
+
+  function Counter() {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+      </div>
+    );
+  }
+  ```
+
+### 2. `useEffect` Hook:
+- **Purpose**: Used to perform side effects in functional components.
+- **Syntax**: 
+  ```javascript
+  useEffect(() => {
+    // Side effect code here
+  }, [dependencies]);
+  ```
+- **Description**:
+  - The first argument is a function containing the side effect code.
+  - The second argument is an optional array of dependencies.
+  - Side effect code runs after every render by default.
+- **Example**:
+  ```jsx
+  import React, { useState, useEffect } from 'react';
+
+  function Timer() {
+    const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setSeconds(prevSeconds => prevSeconds + 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []); // Empty dependency array to run effect only once
+
+    return <p>Seconds: {seconds}</p>;
+  }
+  ```
+
+### 3. `useMemo` Hook:
+- **Purpose**: Used to memoize the result of expensive computations.
+- **Syntax**: `const memoizedValue = useMemo(() => computeExpensiveValue(), [dependencies]);`
+- **Description**:
+  - The first argument is a function that computes the value.
+  - The second argument is an array of dependencies.
+  - Memoized value is recalculated only if the dependencies change.
+- **Example**:
+  ```jsx
+  import React, { useMemo } from 'react';
+
+  function MemoizedComponent({ a, b }) {
+    const memoizedValue = useMemo(() => {
+      // Expensive computation using `a` and `b`
+      return computeExpensiveValue(a, b);
+    }, [a, b]);
+
+    return <div>Memoized value: {memoizedValue}</div>;
+  }
+  ```
+
+### 4. `useCallback` Hook:
+- **Purpose**: Used to memoize functions, similar to `useMemo`.
+- **Syntax**: `const memoizedCallback = useCallback(() => { /* function body */ }, [dependencies]);`
+- **Description**:
+  - The first argument is the function to memoize.
+  - The second argument is an array of dependencies.
+  - Memoized callback is recreated only if the dependencies change.
+- **Example**:
+  ```jsx
+  import React, { useState, useCallback } from 'react';
+
+  function ParentComponent() {
+    const [count, setCount] = useState(0);
+
+    const handleClick = useCallback(() => {
+      setCount(prevCount => prevCount + 1);
+    }, []); // Empty dependency array to memoize callback
+
+    return (
+      <div>
+        <ChildComponent onClick={handleClick} />
+      </div>
+    );
+  }
+
+  function ChildComponent({ onClick }) {
+    return <button onClick={onClick}>Increment</button>;
+  }
+  ```
+
+These hooks enable React developers to manage state, perform side effects, and optimize performance in functional components more effectively compared to class components. Each hook serves a specific purpose and helps in writing cleaner and more maintainable code.
+
+
+**/
