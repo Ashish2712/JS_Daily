@@ -625,4 +625,47 @@ Ans: Certainly! Let's dive deeper into each of these React hooks: `useEffect`, `
 These hooks enable React developers to manage state, perform side effects, and optimize performance in functional components more effectively compared to class components. Each hook serves a specific purpose and helps in writing cleaner and more maintainable code.
 
 
+/**
+Q: Explain lifecycle method in React js?
+Ans: In React, lifecycle methods are specialized functions that get called at specific points in a component's lifecycle. They offer hooks into the moments before and after certain phases of the component's life, such as before it renders, after it renders, before it receives new props, before it updates, and before it unmounts and is destroyed. These lifecycle methods provide a powerful way to control the behavior of React components.
+
+As of React 16.3, the lifecycle methods can be categorized into mounting, updating, and unmounting phases. Additionally, React introduced new lifecycle methods and deprecated some of the old ones to encourage safer coding practices and to handle asynchronous rendering.
+
+### Mounting
+
+Mounting refers to the phase when a component is created and inserted into the DOM. The lifecycle methods called in this phase are:
+
+1. **constructor(props)**: The first method called in the lifecycle of a component. It's used for initializing state and binding event handlers to the instance.
+2. **static getDerivedStateFromProps(props, state)**: Called right before rendering. It's used to update the state based on changes in props over time.
+3. **render()**: The only required method in a class component. It examines `this.props` and `this.state` and returns React elements, arrays and fragments, portals, string and number, Booleans, or `null`.
+4. **componentDidMount()**: Invoked immediately after a component is mounted (inserted into the tree). It's used for DOM manipulations, network requests, and setting up subscriptions (and cleaning them up in `componentWillUnmount`).
+
+### Updating
+
+Updating occurs when a component's props or state changes, prompting a re-render. The methods called in this phase are:
+
+1. **static getDerivedStateFromProps(props, state)**: Called before rendering as a result of new props or setState().
+2. **shouldComponentUpdate(nextProps, nextState)**: Allows the component to optimize its performance by not re-rendering if not needed.
+3. **render()**: Called again to re-render the UI with the new props and state.
+4. **getSnapshotBeforeUpdate(prevProps, prevState)**: Invoked right before the most recently rendered output is committed to the DOM. It can return a value that is passed to `componentDidUpdate()`.
+5. **componentDidUpdate(prevProps, prevState, snapshot)**: Called immediately after updating occurs. It's not called for the initial render. Useful for DOM updates based on the previous state before the DOM was updated.
+
+### Unmounting
+
+Unmounting is the final phase of a component's lifecycle when the component is removed from the DOM. The method called in this phase is:
+
+1. **componentWillUnmount()**: Invoked immediately before a component is unmounted and destroyed. It's used for cleaning up timers, canceling network requests, or cleaning up any subscriptions made in `componentDidMount`.
+
+### Deprecated Lifecycle Methods (as of React 16.3)
+
+- **componentWillMount()**
+- **componentWillReceiveProps(nextProps)**
+- **componentWillUpdate(nextProps, nextState)**
+
+These methods are considered unsafe for use in asynchronous rendering and are prefixed with `UNSAFE_` in newer versions of React (v16.3 and later). It's recommended to use the new lifecycle methods or the `React Hooks` API for function components to handle side effects, state, and refs.
+
+### React Hooks
+
+With the introduction of React 16.8, function components can also participate in similar lifecycle behaviors using Hooks (`useState`, `useEffect`, `useContext`, etc.), making it possible to use state and other React features without writing a class. The `useEffect` Hook, for example, serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API.
+
 **/
