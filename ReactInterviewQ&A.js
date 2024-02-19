@@ -669,3 +669,134 @@ These methods are considered unsafe for use in asynchronous rendering and are pr
 With the introduction of React 16.8, function components can also participate in similar lifecycle behaviors using Hooks (`useState`, `useEffect`, `useContext`, etc.), making it possible to use state and other React features without writing a class. The `useEffect` Hook, for example, serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API.
 
 **/
+
+/**
+Q: What is difference between export default and export in React js?
+Ans: In the context of React JS, which is a JavaScript library, the terms `export default` and `export` are actually features of ES6 (ECMAScript 2015) module system, not specific to React. However, they are widely used in React applications (as well as in other JavaScript applications) to organize and share code across different files. Here's how they differ:
+
+### `export`
+
+The `export` statement is used to export functions, objects, or primitive values from a module so they can be imported by other modules with the `import` statement.
+
+- You can have multiple named exports in a single module.
+- Named exports are useful to export several values.
+- When importing, you have to use the same name as the named export.
+
+Example of using `export`:
+
+```javascript
+// In a file named `someModule.js`
+export const myFunction = () => {
+  console.log("Hello from myFunction");
+};
+
+export const myVariable = 123;
+```
+
+When importing:
+
+```javascript
+import { myFunction, myVariable } from './someModule';
+```
+
+### `export default`
+
+The `export default` syntax is used for a module to export a single value or to have a "fallback" value for the module. There can only be one default export per module.
+
+- It's used when you want to export and import a single thing in a file without having to use curly braces.
+- It's especially handy for components in React since typically you're exporting one component per file.
+
+Example of using `export default`:
+
+```javascript
+// In a file named `MyComponent.js`
+import React from 'react';
+
+class MyComponent extends React.Component {
+  render() {
+    return <div>Hello from MyComponent</div>;
+  }
+}
+
+export default MyComponent;
+```
+
+When importing a default export, you can name it whatever you want:
+
+```javascript
+import WhateverNameYouWant from './MyComponent';
+```
+
+### Summary
+
+- Use `export` for named exports when you want to export multiple elements. Importing these requires destructuring unless you import the entire module as a namespace.
+- Use `export default` when you have a single main export per file, which is a common pattern for React components. This allows for a slightly simpler import syntax.
+
+**/
+
+/**
+Q: What is portal in React js?
+Ans: In React, a portal provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. This feature is particularly useful for when you need to break out of the current DOM hierarchy without losing the component's context and state, allowing you to maintain proper event bubbling and state management across the React tree.
+
+### Use Cases for Portals
+
+Portals are commonly used for components that should not be bound by the parent's styling and layout constraints, such as:
+
+- Modals
+- Dropdowns
+- Tooltips
+- Loading overlays
+
+These elements often need to be appended to the document body or another component far up the tree to prevent issues with overflow, clipping, or z-index.
+
+### How to Use Portals
+
+The `ReactDOM.createPortal()` method is used to create a portal. It accepts two arguments:
+
+1. The JSX of the component you want to render.
+2. The DOM node to render into.
+
+Here's a basic example:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class MyPortalComponent extends React.Component {
+  render() {
+    // Renders this component into a different part of the DOM
+    return ReactDOM.createPortal(
+      // Any valid React child: it could be a JSX fragment, an element, a string, etc.
+      this.props.children,
+      // A DOM node into which the portal should be rendered.
+      document.getElementById('portal-root')
+    );
+  }
+}
+
+// Usage
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello from the main app</h1>
+        <MyPortalComponent>
+          <p>This will be rendered in a different part of the DOM!</p>
+        </MyPortalComponent>
+      </div>
+    );
+  }
+}
+
+// Make sure you have a div with id="portal-root" in your index.html
+```
+
+### Key Points
+
+- Portals provide a way to render components into a DOM node that is outside the parent component's DOM hierarchy.
+- Event bubbling works seamlessly with portals. Events bubble up through the React tree, not the DOM tree. This means that an event triggered inside a portal will propagate to ancestors in the containing React tree, even if those elements are not ancestors in the DOM tree.
+- Using portals responsibly involves ensuring accessibility, managing focus, and cleaning up the portal's container if necessary, especially in single-page applications where the DOM structure doesn't get naturally cleared on page reloads.
+
+Portals are an advanced feature and should be used when necessary. They offer a powerful escape hatch when you need to render an element outside the current React component's DOM hierarchy without losing the benefits of React's state management and lifecycle features.
+
+**/
