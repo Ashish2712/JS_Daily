@@ -800,3 +800,24 @@ class App extends React.Component {
 Portals are an advanced feature and should be used when necessary. They offer a powerful escape hatch when you need to render an element outside the current React component's DOM hierarchy without losing the benefits of React's state management and lifecycle features.
 
 **/
+
+/**
+Q: What is reconciliation in React js?
+Ans:In React.js, reconciliation is the process through which React updates the DOM (Document Object Model) when the state of a component changes. Given React's declarative nature, when the state of components changes, React needs to determine what changed and how to efficiently update the UI to reflect those changes.
+
+The reconciliation process involves two key steps:
+
+1. **Diffing Algorithm**: React compares the new return value of the component's render function (which React calls to get the new structure of the component's UI) with the previous structure. This comparison happens in the virtual DOM, which is a lightweight copy of the actual DOM. The diffing algorithm identifies changes between the old virtual DOM and the new virtual DOM.
+
+2. **Update the DOM**: Once React knows what has changed through the diffing process, it updates the actual DOM only where changes have occurred. This selective updating improves performance and efficiency, as updating the DOM is a relatively expensive operation.
+
+React uses a few heuristics to make this process efficient:
+
+- **Component Identity**: When comparing trees, React assumes that components of the same type are the same component. This assumption helps in determining what needs to be re-rendered. If the component type changes, React will replace the old tree with the new tree.
+
+- **Lists and Keys**: For lists of elements, React uses keys to identify which elements have changed, been added, or been removed. Keys should be unique among siblings to give elements a stable identity. This way, React can re-order elements instead of re-rendering the entire list.
+
+The reconciliation process is what enables React to be fast and efficient, making it possible to build dynamic and interactive web applications.
+
+**/
+
