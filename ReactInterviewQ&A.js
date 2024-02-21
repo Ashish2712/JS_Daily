@@ -821,3 +821,48 @@ The reconciliation process is what enables React to be fast and efficient, makin
 
 **/
 
+/**
+Q: What is useRef in React js?
+Ans: `useRef` is a Hook in React that allows you to persistently store a mutable value that does not cause a re-render when it is updated. It can be used for a variety of purposes, such as accessing a DOM element directly, storing a previous state value, or keeping any mutable value that you don't want to trigger re-renders when it changes. `useRef` is part of the Hooks API introduced in React 16.8 that allows you to use state and other React features without writing a class.
+
+### How to use `useRef`
+
+To use `useRef`, you first need to import it from React and then call it inside a functional component. It returns a mutable ref object whose `.current` property is initialized to the argument passed into `useRef`. The object returned will persist for the full lifetime of the component.
+
+Example usage:
+
+```jsx
+import React, { useRef, useEffect } from 'react';
+
+function MyComponent() {
+  // Create a ref object
+  const myRef = useRef(null);
+
+  useEffect(() => {
+    // Access the ref's current value
+    console.log(myRef.current);
+    // You can modify it directly
+    myRef.current = "New Value";
+  }, []);
+
+  return <div ref={myRef}>Hello, world!</div>;
+}
+```
+
+### Common Use Cases
+
+1. **Accessing DOM Elements**: The most common use of `useRef` is to access a DOM element directly. You can pass the ref object to the ref attribute of a React element. After the component mounts, the ref's `.current` property will point to the corresponding DOM node.
+
+2. **Storing Previous State**: `useRef` can be used to keep track of a value from the previous render. This is useful in situations where you want to compare the previous and current props or state values.
+
+3. **Keeping a Mutable Value**: If you need to keep a mutable value that does not trigger re-renders when it changes, `useRef` is a good option. This is useful for values that need to persist across renders but do not directly influence the output.
+
+### Differences Between `useRef` and `useState`
+
+- **Re-renders**: Updating a state variable using `useState` will cause the component to re-render. In contrast, changing the `.current` property of a ref object created by `useRef` does not trigger a re-render.
+- **Mutable Object**: The ref object is mutable and can be changed directly, whereas state updates through `useState` must go through the setter function.
+
+In summary, `useRef` is a versatile hook that can be used for more than just accessing DOM elements. It provides a way to store mutable values across renders without causing additional renders, making it an essential part of the React Hooks API.
+
+
+**/
