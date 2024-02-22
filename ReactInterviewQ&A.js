@@ -890,6 +890,47 @@ Ans: Server-Side Rendering (SSR) in React is a technique for rendering React com
 - **Development Constraints**: Developers need to ensure that code is isomorphic (or universal), meaning it can run both on the server and the client. This sometimes requires special handling for APIs that are only available in the browser (like the `window` or `document` objects).
 
 Frameworks and libraries like Next.js have popularized and simplified the use of SSR with React by providing conventions and built-in support for SSR, making it easier to develop SEO-friendly and high-performance web applications.
+**/
 
+/**
+Q:  What is useStrict in React js?
+Ans: The `useStrict` mode you're inquiring about seems to be a mix-up with JavaScript's `"use strict"` directive and React's strict mode features. Let's clarify both concepts:
+
+### JavaScript's `"use strict"` Directive
+
+In JavaScript, `"use strict"` is a directive introduced in ECMAScript 5. It enables strict mode that applies a stricter set of rules to the script or function in which it's declared. When in strict mode, JavaScript will throw more exceptions, disallow certain actions, and generally make it easier for developers to write "secure" JavaScript. For example, in strict mode, you cannot use undeclared variables.
+
+```javascript
+"use strict";
+x = 3.14; // This will cause an error because x is not declared
+```
+
+### React's StrictMode Component
+
+In React, `StrictMode` is a tool for highlighting potential problems in an application. It's a component that you can wrap around other components to check for issues in development mode without affecting the production build. `StrictMode` helps with:
+
+- Identifying components with unsafe lifecycles.
+- Warning about deprecated API usage.
+- Detecting unexpected side effects in the render phase.
+- Checking for legacy context API usage.
+
+Here's how you might use `StrictMode` in a React application:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+In this snippet, `App` and its children are wrapped in `<React.StrictMode>`. This doesn't render any visible UI but activates checks and warnings for its descendants.
+
+To summarize, `"use strict"` is a JavaScript feature for enforcing strict parsing and error handling of your code, while `StrictMode` in React is a development mode tool for identifying potential problems in your application. They serve different purposes within their respective environments.
 
 **/
