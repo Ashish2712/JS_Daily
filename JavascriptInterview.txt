@@ -6,4 +6,90 @@ ECMAScript defines the syntax, types, statements, keywords, and objects that sho
 Since its inception, ECMAScript has gone through several editions, with significant updates and improvements in its features, syntax, and capabilities. For example, ECMAScript 2015 (also known as ES6) introduced classes, modules, arrow functions, promises, and many other features that significantly enhanced JavaScript programming.
 Developers often refer to the version of ECMAScript to discuss the availability of different features in JavaScript, as not all environments may support the latest features immediately. The continuous evolution of ECMAScript ensures that JavaScript remains a modern, powerful, and versatile programming language for web development and beyond.
 
-Q:2 
+Q:2 What is difference between let ,cons and var?
+Ans: In JavaScript, `var`, `let`, and `const` are all used for variable declaration, but they differ in terms of scope, hoisting, and reassignment. Understanding these differences is crucial for managing variable values and their availability in your code effectively.
+### `var`
+- **Scope**: `var` declares a variable with function scope or globally if declared outside a function. This means if `var` is declared inside a function, it can only be accessed within that function. If declared outside, it's available globally.
+- **Hoisting**: Variables declared with `var` are hoisted to the top of their function or global scope, but not initialized. This means you can reference them before they are declared, but their value will be `undefined` until the point of their definition is reached.
+- **Reassignment**: You can reassign and redeclare variables declared with `var`.
+### `let`
+- **Scope**: `let` provides block scope (a block is anything between `{}` braces), meaning the variable is only accessible within the nearest enclosing block. This is more intuitive and reduces the risk of errors in loops or conditional statements.
+- **Hoisting**: `let` declarations are hoisted to the top of their block scope, but not initialized. Accessing them before the declaration results in a `ReferenceError`.
+- **Reassignment**: Variables declared with `let` can be reassigned but not redeclared within the same scope.
+### `const`
+- **Scope**: Like `let`, `const` also provides block scope.
+- **Hoisting**: `const` is also hoisted to the top of the block but is not initialized, similar to `let`.
+- **Reassignment**: `const` declarations must be initialized at the time of declaration and cannot be reassigned or redeclared. However, the properties of objects or arrays declared with `const` can be modified.
+### Key Differences at a Glance:
+- **Scope**: `var` is function or globally scoped, while both `let` and `const` are block-scoped.
+- **Hoisting**: All are hoisted to the top of their scope, but `var` is initialized with `undefined`, while `let` and `const` are not initialized, leading to a `ReferenceError` if accessed before declaration.
+- **Reassignment and Redeclaration**: `var` allows redeclaration and reassignment. `let` allows reassignment but not redeclaration in the same scope. `const` allows neither reassignment nor redeclaration.
+Choosing between `var`, `let`, and `const` depends on the specific needs regarding the scope, and whether or not the variable's value should be allowed to change throughout the script. The introduction of `let` and `const` in ES6 (ECMAScript 2015) has made code more predictable and less prone to errors, with `const` being preferred for constants and `let` for variables that may change.
+
+Q: What is spread operator, Rest operator, default parameter?
+Ans: In JavaScript, the spread operator, rest parameters, and default parameters are syntactic features that provide more flexible ways to handle functions and collections of data like arrays and objects.
+
+### Spread Operator (`...`)
+
+The spread operator allows an iterable such as an array or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+
+**Usage Examples:**
+
+- **Function Call**: Pass elements of an array as arguments to a function.
+  ```javascript
+  function sum(x, y, z) {
+    return x + y + z;
+  }
+  const numbers = [1, 2, 3];
+  console.log(sum(...numbers)); // Output: 6
+  ```
+- **Array Literals**: Create a new array using an existing array.
+  ```javascript
+  const parts = ['shoulders', 'knees'];
+  const body = ['head', ...parts, 'toes'];
+  // body: ['head', 'shoulders', 'knees', 'toes']
+  ```
+- **Object Literals**: Combine properties from different objects into a new object.
+  ```javascript
+  const obj1 = { foo: 'bar', x: 42 };
+  const obj2 = { foo: 'baz', y: 13 };
+  const mergedObj = { ...obj1, ...obj2 };
+  // mergedObj: { foo: 'baz', x: 42, y: 13 }
+  ```
+
+### Rest Parameters (`...`)
+
+Rest parameters syntax looks exactly like the spread operator but is used for a different purpose. It allows a function to accept an indefinite number of arguments as an array, providing a way to capture the "rest" of the arguments passed to a function.
+
+**Usage Example:**
+
+```javascript
+function sum(...args) {
+  return args.reduce((sum, current) => sum + current, 0);
+}
+console.log(sum(1, 2, 3, 4)); // Output: 10
+```
+
+### Default Parameters
+
+Default parameter syntax is a way to initialize named parameters with default values if no value or `undefined` is passed.
+**Usage Example:**
+
+```javascript
+function greet(name = "Stranger") {
+  return `Hello, ${name}!`;
+}
+console.log(greet("Alice")); // Output: Hello, Alice!
+console.log(greet());        // Output: Hello, Stranger!
+```
+**Key Differences and Usage:**
+
+- The **spread operator** is used to spread out elements of an iterable or properties of an object.
+- **Rest parameters** are used to collect all remaining arguments of a function into an array.
+- **Default parameters** allow parameters to be initialized with default values if no value or `undefined` is passed.
+
+These features together provide powerful and expressive ways to work with functions and data structures in JavaScript, making code more concise and flexible.
+
+Q: 
+
+
