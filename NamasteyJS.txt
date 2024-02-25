@@ -1,0 +1,3 @@
+javascript is a single threaded synchronous language.
+everything in javascript happens inside execution context
+variable enviornmet(memory) and thread of execution (code)
