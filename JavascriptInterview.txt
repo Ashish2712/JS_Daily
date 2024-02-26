@@ -90,6 +90,134 @@ console.log(greet());        // Output: Hello, Stranger!
 
 These features together provide powerful and expressive ways to work with functions and data structures in JavaScript, making code more concise and flexible.
 
-Q: 
+Q: What is deep copy and shallow copy in Javascript?
+Ans: In JavaScript, understanding the difference between deep copy and shallow copy is crucial when dealing with complex data structures like objects and arrays, especially since JavaScript handles primitive data types (e.g., numbers, strings) and reference data types (e.g., objects, arrays) differently. Here’s a breakdown of shallow copy and deep copy concepts:
+
+### Shallow Copy
+A shallow copy of an object or an array copies the top-level properties or values. If the original structure contains primitive data types, they are copied by value. However, if it contains objects or arrays, the references to those objects or arrays are copied, not the actual objects. This means the copied structure shares references to the same objects as the original structure. Modifying these nested objects or arrays will reflect in both the original and the copied structure.
+
+**JavaScript provides several ways to create a shallow copy:**
+- Using the spread operator `...`
+- Object.assign()
+- Array methods like `.slice()` for arrays
+
+**Example of Shallow Copy:**
+```javascript
+const original = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...original };
+
+shallowCopy.a = 3;
+shallowCopy.b.c = 4;
+
+console.log(original); // Output: { a: 1, b: { c: 4 } }
+console.log(shallowCopy); // Output: { a: 3, b: { c: 4 } }
+```
+Notice how changing `b.c` in the `shallowCopy` also affects `original`.
+
+### Deep Copy
+A deep copy creates a new object or array that duplicates not only the top-level properties but also recursively copies all nested objects and arrays. This results in a new structure that does not share any references with the original. Modifying the nested objects or arrays in the copied structure does not affect the original structure.
+
+Creating a deep copy can be more complex and might require a utility function or library. A common, but not always recommended way (due to potential issues with special object types, methods, or circular references), is using `JSON.parse(JSON.stringify(object))`.
+
+**Example of Deep Copy:**
+```javascript
+const original = { a: 1, b: { c: 2 } };
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+deepCopy.a = 3;
+deepCopy.b.c = 4;
+
+console.log(original); // Output: { a: 1, b: { c: 2 } }
+console.log(deepCopy); // Output: { a: 3, b: { c: 4 } }
+```
+Here, changing `b.c` in `deepCopy` does not affect `original`.
+
+### Key Differences
+- **Shallow Copy**: Copies the top-level elements. If the original contains reference types (like objects or arrays), the copy shares references to the same objects.
+- **Deep Copy**: Recursively copies all elements, including nested objects and arrays, resulting in a completely independent structure.
+
+Choosing between shallow and deep copying depends on the specific needs of your application, especially considering the performance implications of deep copying complex structures.
+
+Q: What is promise , callback function , async await in in Javascript?
+Ans: In JavaScript, dealing with asynchronous operations involves several key concepts and constructs, including callbacks, promises, and the `async/await` syntax. Each represents a different evolution stage in handling asynchronous tasks in JavaScript, offering different levels of readability, ease of use, and control over asynchronous operations.
+
+### Callback Function
+
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. Callbacks are the most basic method of asynchronous programming in JavaScript. However, managing multiple callbacks can lead to complex, hard-to-read code, often referred to as "callback hell" or "the pyramid of doom," especially with nested asynchronous operations.
+
+**Example of a Callback:**
+```javascript
+function fetchData(callback) {
+  setTimeout(() => {
+    callback('Data loaded');
+  }, 1000);
+}
+
+fetchData((data) => {
+  console.log(data); // Output after 1 second: Data loaded
+});
+```
+
+### Promise
+
+A Promise is an object representing the eventual completion (or failure) of an asynchronous operation and its resulting value. A promise can be in one of three states:
+- **Pending**: The initial state; the operation has not completed yet.
+- **Fulfilled**: The operation completed successfully.
+- **Rejected**: The operation failed.
+
+Promises allow for better control of asynchronous flows and error handling, using `.then()` for handling successful outcomes, `.catch()` for errors, and `.finally()` for code that should run after the promise is settled, regardless of its outcome.
+
+**Example of a Promise:**
+```javascript
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Data loaded');
+    }, 1000);
+  });
+}
+
+fetchData().then(data => {
+  console.log(data); // Output after 1 second: Data loaded
+}).catch(error => {
+  console.error(error);
+});
+```
+
+### Async/Await
+
+`async/await` is syntactic sugar built on top of promises, introduced in ES2017 (ES8), making asynchronous code look and behave a little more like synchronous code. This makes the code cleaner and easier to read.
+
+- An `async` function returns a promise.
+- The `await` keyword is used to pause async function execution until a promise is settled (either resolved or rejected), and to unwrap the promise's result.
+
+**Example of Async/Await:**
+```javascript
+async function fetchData() {
+  return 'Data loaded';
+}
+
+async function showData() {
+  try {
+    const data = await fetchData();
+    console.log(data); // Output: Data loaded
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+showData();
+```
+
+### Key Differences and Usage
+
+- **Callback Functions** are the foundational concept for asynchronous operations in JavaScript but can lead to complex code structures.
+- **Promises** provide a more powerful and flexible way to handle asynchronous operations, simplifying chaining and error handling.
+- **Async/Await** makes code that uses promises more readable and easier to follow, resembling synchronous code while maintaining non-blocking behavior.
+
+Each of these constructs can be used to handle asynchronous operations in JavaScript, with the choice depending on the specific needs of the application and developer preference for readability and ease of use.
+
+
+
 
 
