@@ -217,6 +217,126 @@ showData();
 
 Each of these constructs can be used to handle asynchronous operations in JavaScript, with the choice depending on the specific needs of the application and developer preference for readability and ease of use.
 
+Q: What is difference between promise and callback in Javascript?
+Ans: In JavaScript, both promises and callbacks are used to handle asynchronous operations, but they do so in fundamentally different ways, each with its own advantages and drawbacks. Understanding the differences between them is crucial for writing efficient and readable asynchronous code.
+
+### Callbacks
+
+A callback is a function passed as an argument to another function, which can then be executed at a later point in time, usually after some asynchronous operation has completed. Callbacks provide a simple way to deal with asynchronous code, like I/O operations, timers, or requests to a server.
+
+**Characteristics of Callbacks:**
+
+- **Simplicity**: Easy to understand and implement for basic asynchronous operations.
+- **Nesting**: For multiple asynchronous operations, callbacks need to be nested inside each other, leading to what is commonly referred to as "callback hell" or "pyramid of doom." This pattern can make the code harder to read and maintain.
+- **Error Handling**: Handling errors in nested callbacks can become complex and lead to repetitive code.
+
+**Example of a Callback:**
+```javascript
+function fetchData(callback) {
+  setTimeout(() => {
+    callback(null, 'Data loaded');
+  }, 1000);
+}
+
+fetchData((error, data) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(data);
+  }
+});
+```
+
+### Promises
+
+A Promise is an object representing the eventual completion or failure of an asynchronous operation. Promises are more advanced and flexible than callbacks for managing asynchronous operations.
+
+**Characteristics of Promises:**
+
+- **State**: A promise is always in one of three states: pending, fulfilled, or rejected, which helps manage the asynchronous operation's outcome more predictably.
+- **Chaining**: Promises can be chained, allowing for a sequence of asynchronous operations to be performed in a more readable and maintainable way, avoiding the nesting associated with callbacks.
+- **Error Handling**: Promises use `.catch()` for error handling, which can catch errors from any step in the chain of promises, making error handling more straightforward and centralized.
+
+**Example of a Promise:**
+```javascript
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Data loaded');
+    }, 1000);
+  });
+}
+
+fetchData()
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+```
+
+### Key Differences
+
+- **Structure and Readability**: Promises provide a cleaner and more readable structure for handling complex asynchronous operations compared to the nested structure of callbacks.
+- **Flow Control**: Promises offer better control over the sequence of asynchronous operations through chaining (`then`) and centralized error handling (`catch`), which can be cumbersome with callbacks.
+- **Standardization**: Promises are part of the ECMAScript standard, ensuring consistency in behavior across different implementations and environments.
+
+In summary, while callbacks are a more straightforward and fundamental approach to handling asynchronous operations, promises offer a more powerful and flexible abstraction, reducing complexity and improving code readability and maintainability, especially for complex asynchronous flows.
+
+Q: What is event bubbling and event capturing in Javascript?
+Ans: Event bubbling and event capturing are two phases of how events propagate through the DOM (Document Object Model) in a web page. Understanding these concepts is crucial for effective event handling in JavaScript, especially when dealing with nested elements.
+
+### Event Bubbling
+
+Event bubbling is the concept where an event starts from the target element that triggered the event and then bubbles up the DOM tree to the root. This means that the event will first be handled by the target element, then by its parent, and then all its ancestors up to the top. 
+
+**Characteristics of Event Bubbling:**
+- It is the default mode of event propagation in the DOM.
+- It allows for a form of event delegation, where a single event handler on a parent element can listen for events that bubble up from its children.
+
+**Example of Event Bubbling:**
+Imagine you have a button (`<button>`) inside a div (`<div>`). Clicking the button will first trigger the click event on the button, and then the event will bubble up to the div, and then further up the DOM tree.
+
+```html
+<div onclick="console.log('div clicked')">
+  <button onclick="console.log('button clicked')">Click Me</button>
+</div>
+```
+If you click the button, you'll see "button clicked" and then "div clicked" in the console, demonstrating event bubbling.
+
+### Event Capturing (or Event Trickling)
+
+Event capturing is the opposite of bubbling. During the capturing phase, the event starts from the root of the DOM tree and goes down to the target element. It's a way to intercept events as they descend down the DOM tree, allowing ancestors to handle events before they reach the target (child) elements.
+
+**Characteristics of Event Capturing:**
+- It is not the default mode of event propagation; it needs to be explicitly enabled.
+- Less commonly used than bubbling, but it can be useful in specific scenarios where you want to handle events before they reach a target element.
+
+To listen for events in the capturing phase, you add an event listener and set the third argument of `addEventListener` to `true`.
+
+**Example of Event Capturing:**
+```html
+<div id="div">
+  <button id="button">Click Me</button>
+</div>
+<script>
+document.getElementById('div').addEventListener('click', function() {
+  console.log('div clicked');
+}, true); // true here enables capturing mode
+
+document.getElementById('button').addEventListener('click', function() {
+  console.log('button clicked');
+}, false); // false or omitted uses bubbling mode
+</script>
+```
+In this setup, if you click the button, you'll first see "div clicked" then "button clicked" in the console, demonstrating event capturing.
+
+### Key Points:
+
+- **Event Propagation** consists of three phases: capturing phase (event goes down the DOM tree), target phase (event reaches the target element), and bubbling phase (event bubbles up the DOM tree).
+- By default, event listeners are set to listen during the bubbling phase (if the third argument of `addEventListener` is `false` or not provided).
+- Setting the third argument of `addEventListener` to `true` makes the listener capture the event as it descends down the DOM tree, before it reaches the target.
+
+Understanding and controlling the flow of events with bubbling and capturing allows for sophisticated event handling strategies in web applications, enabling actions like event delegation, where a single handler on a parent element manages events for multiple children.
+
+
 
 
 
