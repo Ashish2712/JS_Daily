@@ -336,6 +336,63 @@ In this setup, if you click the button, you'll first see "div clicked" then "but
 
 Understanding and controlling the flow of events with bubbling and capturing allows for sophisticated event handling strategies in web applications, enabling actions like event delegation, where a single handler on a parent element manages events for multiple children.
 
+Q: What is higher order function in Javascript?
+Ans: In JavaScript, a higher-order function is a function that meets at least one of the following criteria:
+
+1. **Takes one or more functions as arguments (i.e., procedural parameters).**
+2. **Returns a function as its result.**
+
+Higher-order functions are a fundamental concept in functional programming, allowing for functions to be used as variables or arguments, and facilitating the creation of abstract and reusable code patterns. JavaScript, being a language that supports first-class functions (functions that can be treated as objects), naturally supports higher-order functions.
+
+### Examples and Usage
+
+#### 1. Functions as Arguments
+
+A common use of higher-order functions is to take other functions as arguments. This pattern is widely used in array methods, such as `map`, `filter`, `reduce`, etc.
+
+**Example: Using `Array.prototype.map`**
+
+```javascript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(function(number) {
+  return number * 2;
+});
+
+console.log(doubled); // [2, 4, 6, 8]
+```
+In this example, `map` is a higher-order function because it takes a function as an argument.
+
+#### 2. Returning a Function
+
+Higher-order functions can also return other functions, allowing for dynamic creation of functions based on certain inputs.
+
+**Example: Function for creating greeters**
+
+```javascript
+function createGreeter(greeting) {
+  return function(name) {
+    console.log(greeting, name);
+  };
+}
+
+const sayHello = createGreeter('Hello');
+const sayGoodbye = createGreeter('Goodbye');
+
+sayHello('Alice'); // Hello Alice
+sayGoodbye('Bob'); // Goodbye Bob
+```
+Here, `createGreeter` is a higher-order function because it returns a new function.
+
+### Benefits of Higher-Order Functions
+
+- **Abstraction**: They allow for the abstraction of actions, not just values. This means you can write more general, reusable code.
+- **Composition**: Higher-order functions can be used to compose new functions from existing ones.
+- **Flexibility**: They provide a flexible way to add functionality to existing functions.
+- **Functional Techniques**: They enable functional programming techniques in JavaScript, such as currying, partial application, and function composition.
+
+Higher-order functions are integral to JavaScript and are pervasive in modern JS development, particularly with the rise of functional programming paradigms and practices within the language. Their ability to manipulate functions as first-class citizens opens up a powerful avenue for writing concise, modular, and reusable code.
+
+
 
 
 
