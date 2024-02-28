@@ -392,6 +392,105 @@ Here, `createGreeter` is a higher-order function because it returns a new functi
 
 Higher-order functions are integral to JavaScript and are pervasive in modern JS development, particularly with the rise of functional programming paradigms and practices within the language. Their ability to manipulate functions as first-class citizens opens up a powerful avenue for writing concise, modular, and reusable code.
 
+Q: Explain different-2 types of function in Javascript?
+Ans: In JavaScript, functions are a fundamental building block of the language, allowing you to encapsulate a block of code and execute it wherever and whenever you need. JavaScript provides several ways to define and use functions, each with its own use cases and advantages. Here's an overview of the different types of functions in JavaScript:
+
+### 1. Function Declarations
+
+A function declaration, also known as a function statement, defines a function with the specified parameters.
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+console.log(greet('Alice')); // Output: Hello, Alice!
+```
+
+Function declarations are hoisted, meaning they can be called before they are defined in the code.
+
+### 2. Function Expressions
+
+A function expression assigns an anonymous function (a function without a name) to a variable. Function expressions are not hoisted.
+
+```javascript
+const greet = function(name) {
+  return `Hello, ${name}!`;
+};
+console.log(greet('Bob')); // Output: Hello, Bob!
+```
+
+### 3. Arrow Functions
+
+Introduced in ES6 (ECMAScript 2015), arrow functions offer a concise syntax to write function expressions. They are anonymous and are particularly useful for short functions. Arrow functions do not have their own `this`, `arguments`, `super`, or `new.target` bindings.
+
+```javascript
+const greet = name => `Hello, ${name}!`;
+console.log(greet('Carol')); // Output: Hello, Carol!
+```
+
+### 4. Immediately Invoked Function Expressions (IIFE)
+
+An IIFE is a function expression that is executed right after it is defined. This is useful for creating a private scope.
+
+```javascript
+(function() {
+  console.log('This runs immediately');
+})();
+```
+
+### 5. Generator Functions
+
+Generator functions allow you to define an iterative algorithm by writing a single function whose execution is not continuous.
+
+```javascript
+function* generatorFunction() {
+  yield 'Hello';
+  yield 'World';
+}
+const generatorObject = generatorFunction();
+console.log(generatorObject.next().value); // Output: Hello
+console.log(generatorObject.next().value); // Output: World
+```
+
+### 6. Async Functions
+
+An async function is a function declared with the `async` keyword, and the `await` keyword is permitted within it. `async` functions are instances of `AsyncFunction` constructor, and the return value of an async function is implicitly a promise, which is resolved with its return value or rejected with its thrown exceptions.
+
+```javascript
+async function fetchData() {
+  const data = await fetch('https://api.example.com');
+  return data;
+}
+```
+
+### 7. Callback Functions
+
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+```javascript
+function processData(callback) {
+  // some code
+  callback();
+}
+```
+
+### 8. Constructor Functions
+
+Before the introduction of ES6 classes, constructor functions were used to construct new objects. The `new` keyword is used to create an instance of an object that has a constructor function.
+
+```javascript
+function Person(name) {
+  this.name = name;
+  this.greet = function() {
+    return `Hello, ${this.name}`;
+  };
+}
+const person = new Person('Dave');
+console.log(person.greet()); // Output: Hello, Dave
+```
+
+Each type of function in JavaScript serves different purposes and use cases, from defining simple reusable blocks of code to creating complex, asynchronous, or object-oriented programs. Understanding these different types allows you to leverage the full power and flexibility of JavaScript in your projects.
+
 
 
 
