@@ -1,4 +1,4 @@
-
+react interview questions and answers 
 Q-1 What is reactzjs?
 Ans: React.js, commonly referred to as React, is an open-source JavaScript library used for building user interfaces (UIs) or front-end components for web applications. It was developed by Facebook and later open-sourced. React is maintained by Facebook along with a community of individual developers and companies.
 React is popular for several reasons:
