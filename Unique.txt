@@ -1,0 +1,33 @@
+this file contains unique interview questions.
+
+explain js execution
+JavaScript code execution, especially in web browsers, involves a series of steps that turn your JavaScript code into actions on a webpage or in a JavaScript runtime environment like Node.js. Here's an overview of how JavaScript code is executed, both in simple terms and with more detail:
+
+### Simple Terms
+
+When you run a JavaScript script, the environment (like a web browser or Node.js) reads your code line by line, interprets what actions you've asked for, and performs those actions. This process involves:
+
+1. **Reading the Code**: The JavaScript engine starts by looking at your script and understanding what you've written.
+2. **Compilation**: Some JavaScript engines use a "Just-In-Time" (JIT) compilation strategy, turning your JavaScript code into a faster, machine-understandable format right before it's executed.
+3. **Execution**: The engine then runs your code, performing tasks like creating variables, making calculations, or manipulating the webpage, based on what your code says.
+4. **Memory Management**: As your code runs, the JavaScript engine also manages memory for you, creating space for your variables and cleaning them up when they're no longer needed.
+
+### In Detail
+
+The detailed execution process of JavaScript involves several components and concepts:
+
+1. **Parsing**: The JavaScript engine parses the code to construct an Abstract Syntax Tree (AST)—a tree representation of the syntax of your code. Parsing checks if the syntax of your code is correct; if there are syntax errors, the engine throws an error and stops execution.
+
+2. **Compilation**: Modern JavaScript engines, like V8 (used in Chrome and Node.js), employ JIT compilation. The engine initially interprets the code (converts it to bytecode) but also monitors the execution to identify hot paths (code that's executed frequently). These sections are then compiled into optimized machine code for faster execution.
+
+3. **Execution Context**: When executing code, JavaScript creates execution contexts, which can be thought of as environments where the code runs. There's a global execution context and function execution contexts. Each context has two phases: the creation phase (where the function declarations, variable declarations, and the global object are set up) and the execution phase (where the code is executed line by line).
+
+4. **Hoisting**: In the creation phase, JavaScript "hoists" function declarations and variable declarations (but not variable initializations) to the top of their respective contexts, which means you can use functions and variables before they appear in the code.
+
+5. **Call Stack**: JavaScript has a call stack where it keeps track of all the execution contexts. Because JavaScript is single-threaded, it can only execute one command at a time. When a function is called, it's added to the stack (pushed onto the stack), and when the function execution is completed, it's removed from the stack (popped off the stack).
+
+6. **Event Loop and Concurrency Model**: JavaScript uses an event loop to handle asynchronous operations. Tasks like event handlers, setTimeout, and HTTP requests are handled by Web APIs (in the case of browsers) and are placed in the task queue when completed. The event loop checks the call stack; if it's empty, it takes the first task from the queue and pushes it onto the call stack to be executed. This model allows JavaScript to perform non-blocking operations, despite being single-threaded.
+
+7. **Garbage Collection**: JavaScript automatically cleans up objects and variables that are no longer needed to free up memory, using a mechanism called garbage collection. This process helps prevent memory leaks by removing references to objects that are no longer in use.
+
+Understanding these steps gives you insight into how JavaScript works under the hood, improving your ability to write efficient, effective code.
