@@ -566,6 +566,88 @@ document.getElementById('myButton').addEventListener('click', (event) => {
 
 Arrow functions streamline function syntax, make `this` behavior more predictable, and are widely used in modern JavaScript for callbacks, array methods, and anywhere a function expression is needed.
 
+Q:  Why we use call, apply bind method in Javascript ?
+Ans: In JavaScript, the functions `call`, `apply`, and `bind` are used to explicitly set the `this` context of a function invocation. Understanding and correctly utilizing `this` is crucial in JavaScript, as its value can change based on the context in which a function is called. These three methods provide flexibility in how functions are executed, particularly in object-oriented programming and functional programming patterns.
+
+### 1. `call` Method
+
+The `call` method calls a function with a given `this` value and arguments provided individually.
+
+**Syntax:**
+```javascript
+func.call(thisArg, arg1, arg2, ...)
+```
+
+**Why Use `call`:**
+- To invoke a method with an explicitly set `this` context.
+- To borrow methods from an object that might not be within the current object’s prototype chain.
+
+**Example:**
+```javascript
+function greet() {
+  console.log(`Hello, I am ${this.name}`);
+}
+
+const person = {
+  name: 'John'
+};
+
+greet.call(person); // Output: Hello, I am John
+```
+
+### 2. `apply` Method
+
+The `apply` method is similar to `call`, but the difference lies in how arguments are passed to the function. `apply` calls the function with a given `this` value and arguments provided as an array (or an array-like object).
+
+**Syntax:**
+```javascript
+func.apply(thisArg, [argsArray])
+```
+
+**Why Use `apply`:**
+- To invoke a function with an explicitly set `this` context and with arguments supplied as an array.
+- Useful in mathematical operations like `Math.max` when you have an array of numbers and want to find the maximum value.
+
+**Example:**
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+const numbers = [1, 2];
+console.log(sum.apply(null, numbers)); // Output: 3
+```
+
+### 3. `bind` Method
+
+The `bind` method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any arguments provided when the new function is called.
+
+**Syntax:**
+```javascript
+const newFunc = func.bind(thisArg, arg1, arg2, ...)
+```
+
+**Why Use `bind`:**
+- To create a new function with an explicitly set `this` context that can be invoked later.
+- Useful for event handlers and callbacks where you need to specify the `this` context.
+
+**Example:**
+```javascript
+function greet() {
+  console.log(`Hello, I am ${this.name}`);
+}
+
+const person = {
+  name: 'Emily'
+};
+
+const greetEmily = greet.bind(person);
+greetEmily(); // Output: Hello, I am Emily
+```
+
+### Conclusion
+
+`call`, `apply`, and `bind` are powerful methods in JavaScript for controlling the execution context of functions (`this` binding). Choosing between them depends on how you need to pass arguments and whether you wish to invoke the function immediately (`call`/`apply`) or return a new function to be called later (`bind`). These methods enhance the flexibility and reusability of functions, making them indispensable tools for JavaScript developers.
 
 
 
