@@ -28,3 +28,28 @@ Object literals, constructor functions, and the class syntax introduced in ECMAS
 
 What is the difference between let, const, and var in JavaScript?
 var has function scope, while let and const have block scope. Additionally, var allows redeclaration within the same scope, while let and const do not.
+
+Q: How browser works?
+Ans: A web browser is a software application used to access information on the World Wide Web. Here's a simplified explanation of how a browser works:
+
+1. **User Interface (UI)**: This is what you see when you open a browser – the address bar, back/forward buttons, bookmarks, etc. The UI allows you to interact with the browser.
+
+2. **Browser Engine**: The browser engine is responsible for parsing HTML and CSS documents, displaying the content on the screen, and handling interactions such as mouse clicks and keyboard inputs. The two most common browser engines are Blink (used by Chrome and Edge) and Gecko (used by Firefox).
+
+3. **Rendering Engine**: The rendering engine takes the HTML and CSS files received from the browser engine and renders them into a visual representation on the screen. It interprets the code and displays the content accordingly. For example, it decides how elements are positioned, their size, colors, etc.
+
+4. **Networking**: When you type a URL into the address bar or click on a link, the browser initiates a network request to the server hosting the website. It uses protocols like HTTP or HTTPS to fetch the requested resources (HTML, CSS, JavaScript files, images, etc.) from the server.
+
+5. **JavaScript Engine**: JavaScript is a scripting language commonly used to create interactive effects within web browsers. The JavaScript engine in the browser (e.g., V8 in Chrome, SpiderMonkey in Firefox) interprets and executes JavaScript code embedded within HTML files.
+
+6. **Storage**: Browsers also have mechanisms for storing data locally, such as cookies, local storage, and cache. These technologies allow websites to store information on your computer for various purposes, such as remembering login sessions or caching frequently accessed files to improve loading times.
+
+7. **User Interface Backend**: This component handles interactions between the user interface and the rendering engine. It translates user actions (clicks, scrolls, etc.) into commands for the rendering engine and vice versa.
+
+8. **Data Persistence Layer**: This layer manages data persistence, storing bookmarks, browsing history, and user preferences.
+
+9. **Browser Plugins/Extensions**: Browsers often support plugins or extensions that provide additional functionality, such as ad blockers, password managers, or developer tools.
+
+10. **Security Features**: Browsers include various security features to protect users from malicious websites and attacks. These features include sandboxing, SSL/TLS encryption, phishing and malware protection, and Content Security Policy (CSP) enforcement.
+
+Overall, a web browser is a complex software system that integrates multiple components to provide users with a seamless experience while browsing the web. Each component plays a crucial role in interpreting and displaying web content accurately and securely.
