@@ -805,6 +805,48 @@ console.log(person1.fullName()); // Jane Doe
 
 Under the hood, class syntax does the same thing: it sets up the prototype chain for instances of the class. Thus, understanding prototype inheritance is crucial for working effectively with JavaScript, even with modern syntax.
 
+Q: What are the array method , string method?
+Ans: Arrays and strings in JavaScript come with a plethora of methods to facilitate manipulation, querying, and traversal. Here's an overview of some commonly used methods for both arrays and strings, noting that this is not an exhaustive list but a selection to highlight their capabilities.
+
+### Array Methods
+
+1. **`push()`** - Adds one or more elements to the end of an array and returns the new length of the array.
+2. **`pop()`** - Removes the last element from an array and returns that element.
+3. **`shift()`** - Removes the first element from an array and returns that removed element.
+4. **`unshift()`** - Adds one or more elements to the beginning of an array and returns the new length of the array.
+5. **`slice()`** - Returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) without modifying the original array.
+6. **`splice()`** - Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+7. **`map()`** - Creates a new array populated with the results of calling a provided function on every element in the calling array.
+8. **`filter()`** - Creates a new array with all elements that pass the test implemented by the provided function.
+9. **`reduce()`** - Executes a reducer function on each element of the array, resulting in a single output value.
+10. **`forEach()`** - Executes a provided function once for each array element.
+11. **`find()`** - Returns the value of the first element in the provided array that satisfies the provided testing function.
+12. **`indexOf()`** - Returns the first index at which a given element can be found in the array, or -1 if it is not present.
+13. **`concat()`** - Used to merge two or more arrays into a new array instance.
+14. **`join()`** - Joins all elements of an array into a string and returns this string.
+15. **`reverse()`** - Reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+
+### String Methods
+
+1. **`charAt()`** - Returns the character at the specified index.
+2. **`concat()`** - Concatenates the string arguments to the calling string and returns a new string.
+3. **`includes()`** - Determines whether one string may be found within another string, returning true or false as appropriate.
+4. **`indexOf()`** - Returns the index within the calling String object of the first occurrence of the specified value, or -1 if not found.
+5. **`toLowerCase()`** / **`toUpperCase()`** - Returns the calling string value converted to lowercase/uppercase.
+6. **`match()`** - Retrieves the result of matching a string against a regular expression.
+7. **`replace()`** - Returns
+
+a new string with some or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.
+8. **`slice()`** - Extracts a section of a string and returns it as a new string, without modifying the original string.
+9. **`split()`** - Divides a `String` into an ordered list of substrings, puts these substrings into an array, and returns the array.
+10. **`substring()`** - Returns the part of the string between the start and end indexes, or to the end of the string.
+11. **`trim()`** - Trims whitespace from both ends of a string and returns a new string, without modifying the original string.
+12. **`startsWith()`** - Determines whether a string begins with the characters of a specified string, returning true or false as appropriate.
+13. **`endsWith()`** - Determines whether a string ends with the characters of a specified string, returning true or false as appropriate.
+14. **`repeat()`** - Constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
+15. **`search()`** - Executes a search for a match between a regular expression and this String object.
+
+Both arrays and strings are fundamental to handling data and text in JavaScript, and their methods provide powerful tools for performing operations and manipulations efficiently. Understanding and mastering these methods can greatly enhance your ability to write effective and concise JavaScript code.
 
 
 
