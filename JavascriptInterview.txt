@@ -848,6 +848,66 @@ a new string with some or all matches of a pattern replaced by a replacement. Th
 
 Both arrays and strings are fundamental to handling data and text in JavaScript, and their methods provide powerful tools for performing operations and manipulations efficiently. Understanding and mastering these methods can greatly enhance your ability to write effective and concise JavaScript code.
 
+Q:  What is throttling and debouncing in js?
+Ans: Throttling and debouncing are two techniques in JavaScript (and other programming languages) used to control how many times a function can execute over time, especially in response to high-frequency events such as scrolling, resizing, or keypress actions. These techniques are crucial for improving performance and enhancing user experience by limiting the number of calls to expensive operations.
+
+### Throttling
+
+Throttling is a technique that ensures a function is called at most once in a specified period. It's like setting a minimum wait time between the calls. No matter how many times the user triggers the event, the attached function will be executed only once in every defined time interval. This is particularly useful for controlling the rate of execution for functions attached to events like scrolling or resizing.
+
+For example, if you attach a throttled function to a scroll event, it ensures the function executes once per every 100 milliseconds (or any set time), regardless of how often the user scrolls.
+
+**Example Usage in JavaScript:**
+
+```javascript
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
+  return function() {
+    const context = this;
+    const args = arguments;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function() {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  }
+}
+```
+
+### Debouncing
+
+Debouncing is a technique that ensures a function is executed only after a certain amount of time has passed since it was last called. This is useful for avoiding redundant calls to functions that do not need to be executed repeatedly during a short period. In contrast to throttling, debouncing will delay the execution of the function until after the user has stopped triggering the event for a specified amount of time.
+
+A common use case for debouncing is in search inputs, where you might want to wait for the user to stop typing before making an API call to fetch search results.
+
+**Example Usage in JavaScript:**
+
+```javascript
+function debounce(func, delay) {
+  let inDebounce;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  }
+}
+```
+
+### Key Differences
+
+- **Throttling** will ensure the function is called at regular intervals, while **debouncing** delays the function call until a certain period of inactivity occurs.
+- Throttling is useful for controlling the execution rate of a function that can be triggered frequently, whereas debouncing is useful for ensuring a function is only called after the trigger event has stopped occurring for a specified amount of time.
+
+Both techniques are invaluable for optimizing performance and resource usage in web applications, particularly when handling events that can fire at a high rate.
 
 
 
