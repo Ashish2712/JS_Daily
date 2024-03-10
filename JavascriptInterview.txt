@@ -909,5 +909,49 @@ function debounce(func, delay) {
 
 Both techniques are invaluable for optimizing performance and resource usage in web applications, particularly when handling events that can fire at a high rate.
 
+Q: What is Null and undefined in javascript?
+Ans: In JavaScript, `null` and `undefined` are both primitives that represent absence of value, but they are used in slightly different contexts and convey different nuances:
 
+### Undefined
 
+- **Meaning**: When a variable is declared but not assigned a value, it is automatically assigned the value `undefined`. It represents the absence of a value for a variable that has been declared.
+- **Default Value**: Variables are initialized with `undefined` by default. If a function does not explicitly return a value, it implicitly returns `undefined`.
+- **Type**: The type of `undefined` is `undefined`.
+- **Example**: 
+    ```javascript
+    let example;
+    console.log(example); // undefined
+    ```
+
+### Null
+
+- **Meaning**: `null` is an intentional absence of any object value. It is used to represent "nothing" or "no value here" for cases where a variable should be empty or unknown.
+- **Intentional Assignment**: `null` is explicitly assigned to a variable by the programmer to indicate that the variable should not point to any object or value.
+- **Type**: The type of `null` is an object, which is considered a bug or an error in the original JavaScript implementation.
+- **Example**: 
+    ```javascript
+    let example = null;
+    console.log(example); // null
+    ```
+
+### Key Differences
+
+1. **Initialization**: `undefined` is the default value of variables that have not been assigned a value, while `null` must be explicitly assigned by the programmer.
+2. **Type**: The type of `undefined` is `undefined`, but `null` is an object.
+3. **Semantic Meaning**: `undefined` typically indicates that a variable has not been initialized or an object property does not exist. `null`, on the other hand, is used by programmers to indicate an intentional absence of any object value.
+4. **Function Return**: If a function doesn’t return anything, it implicitly returns `undefined`. Using `null` as a function's return value should be a deliberate choice when you want to indicate that the function returns "no object".
+
+### Checking for `null` and `undefined`
+
+You can check for both `null` and `undefined` using a strict equality operator (`===`) or the abstract equality operator (`==`) if you want to check for both values simultaneously because `null == undefined` evaluates to `true`.
+
+```javascript
+let a;
+let b = null;
+
+console.log(a === undefined); // true
+console.log(b === null); // true
+console.log(a == b); // true, because both are considered "no value"
+```
+
+Understanding the difference and appropriate use cases for `null` and `undefined` is crucial for writing clear and expressive JavaScript code.
